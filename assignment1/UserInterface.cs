@@ -16,6 +16,9 @@ namespace assignment1
         //Public Methods
         //---------------------------------------------------
 
+        //instantiate enties class
+        BeverageRCooleyEntities beverageEntity = new BeverageRCooleyEntities();
+
         //Display Welcome Greeting
         public void DisplayWelcomeGreeting()
         {
@@ -67,6 +70,17 @@ namespace assignment1
             Console.WriteLine("What is the new items Id?");
             Console.Write("> ");
             string id = Console.ReadLine();
+            //instance created to allow for testing ID location
+            Beverage foundBeverage = beverageEntity.Beverages.Find(Console.ReadLine());
+
+            //prompt user until a unique ID is given.
+            while(id == foundBeverage.id)
+            {
+                Console.WriteLine("That ID is already in use");
+                Console.WriteLine("What is the new items Id?");
+                id = Console.ReadLine();
+            }
+           //If the ID is unique, ask for the rest of the information.
             Console.WriteLine("What is the new items Description?");
             Console.Write("> ");
             string description = Console.ReadLine();
@@ -75,6 +89,8 @@ namespace assignment1
             string pack = Console.ReadLine();
 
             return new string[] { id, description, pack };
+            
+            
         }
 
         //Display Import Success
@@ -148,11 +164,12 @@ namespace assignment1
             Console.WriteLine();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine();
-            Console.WriteLine("1. Load Wine List From CSV");
-            Console.WriteLine("2. Print The Entire List Of Items");
-            Console.WriteLine("3. Search For An Item");
-            Console.WriteLine("4. Add New Item To The List");
-            Console.WriteLine("5. Exit Program");
+            Console.WriteLine("1. Print the Entire Wine List");
+            Console.WriteLine("2. Search for an Item");
+            Console.WriteLine("3. Add a New Item To The List");
+            Console.WriteLine("4. Update an Existing Item");
+            Console.WriteLine("5. Delete an Existing item");
+            Console.WriteLine("6. Exit");
         }
 
         //Display the Prompt

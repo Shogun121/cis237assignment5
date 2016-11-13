@@ -46,62 +46,44 @@ namespace assignment1
             //This is the 'primer' run of displaying and getting.
             int choice = userInterface.DisplayMenuAndGetResponse();
 
-            while (choice != 5)
+            while (choice != 6)
             {
                 switch (choice)
                 {
                     case 1:
-                        //Load the CSV File
-                        bool success = csvProcessor.ImportCSV(wineItemCollection, pathToCSVFile);
-                        if (success)
+                        //Print Entire List Of Items
+
+                        //Using a foreach loop print out each item in the database
+                        foreach (Beverage beverage in beverageEntities.Beverages)
                         {
-                            //Display Success Message
-                            userInterface.DisplayImportSuccess();
-                        }
-                        else
-                        {
-                            //Display Fail Message
-                            userInterface.DisplayImportError();
+                            Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
+                            beverage.price.ToString("n2") + " " + beverage.active + " ");
                         }
                         break;
 
                     case 2:
-                        //Print Entire List Of Items
-                        //string[] allItems = wineItemCollection.GetPrintStringsForAllItems();
-                        //if (allItems.Length > 0)
-                        //{
-                        //    //Display all of the items
-                        //    userInterface.DisplayAllItems(allItems);
-                        //}
-                        //else
-                        //{
-                        //    //Display error message for all items
-                        //    userInterface.DisplayAllItemsError();
-                        //}
-                        Console.WriteLine("Using a foreach loop print out each item in the database.");
+                        //Search For An Item
+                        try
+                        {
+                            Beverage foundBeverage = beverageEntities.Beverages.Find(Console.ReadLine());
 
-                        foreach(Beverage beverage in beverageEntities.Beverages)
-                            {
-                                Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
-                                beverage.price.ToString("n2") + " " + beverage.active + " ");
-                            }
+                            Console.WriteLine(foundBeverage.id + " " + foundBeverage.name + " " + foundBeverage.pack + " " +
+                                foundBeverage.price.ToString("n2") + " " + foundBeverage.active + " ");
+                        }
+                        //Error Message if ID is invalid
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.WriteLine("ID not found.");
+                        }
+                        //Notifies user that the query is complete.
+                        finally
+                        {
+                            Console.WriteLine("Search Query Complete.");
+                        }                
                         break;
 
                     case 3:
-                        //Search For An Item
-                        string searchQuery = userInterface.GetSearchQuery();
-                        string itemInformation = wineItemCollection.FindById(searchQuery);
-                        if (itemInformation != null)
-                        {
-                            userInterface.DisplayItemFound(itemInformation);
-                        }
-                        else
-                        {
-                            userInterface.DisplayItemFoundError();
-                        }
-                        break;
-
-                    case 4:
                         //Add A New Item To The List
                         string[] newItemInformation = userInterface.GetNewItemInformation();
                         if (wineItemCollection.FindById(newItemInformation[0]) == null)
@@ -114,6 +96,33 @@ namespace assignment1
                             userInterface.DisplayItemAlreadyExistsError();
                         }
                         break;
+
+                    case 4:
+                        //Update an existing item(Not ID)
+
+                        break;
+                    case 5:
+                        //Delete an Existing Item(By ID)
+                        try
+                        {
+                            Console.WriteLine("Enter the ID of the Item you wish to delete.");
+                            string deleteString=Console.ReadLine();
+                            beverageEntities.Beverages.Remove();
+
+                            
+                        }
+                        //Error Message if ID is invalid
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.WriteLine("ID not found.");
+                        }
+                        //Notifies user that the query is complete.
+                        finally
+                        {
+                            Console.WriteLine("Search Query Complete.");
+                        }   
+                        break;
                 }
 
                 //Get the new choice of what to do from the user
@@ -123,3 +132,7 @@ namespace assignment1
         }
     }
 }
+/**
+ * TO DO LIST
+ * 1)Move functionality to UI where it belongs.
+ **/

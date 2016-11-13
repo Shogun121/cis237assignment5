@@ -36,6 +36,9 @@ namespace assignment1
             //Create an instance of the CSVProcessor class
             CSVProcessor csvProcessor = new CSVProcessor();
 
+            //Create an instance of the Entities class
+            BeverageRCooleyEntities beverageEntities = new BeverageRCooleyEntities();
+
             //Display the Welcome Message to the user
             userInterface.DisplayWelcomeGreeting();
 
@@ -64,17 +67,24 @@ namespace assignment1
 
                     case 2:
                         //Print Entire List Of Items
-                        string[] allItems = wineItemCollection.GetPrintStringsForAllItems();
-                        if (allItems.Length > 0)
-                        {
-                            //Display all of the items
-                            userInterface.DisplayAllItems(allItems);
-                        }
-                        else
-                        {
-                            //Display error message for all items
-                            userInterface.DisplayAllItemsError();
-                        }
+                        //string[] allItems = wineItemCollection.GetPrintStringsForAllItems();
+                        //if (allItems.Length > 0)
+                        //{
+                        //    //Display all of the items
+                        //    userInterface.DisplayAllItems(allItems);
+                        //}
+                        //else
+                        //{
+                        //    //Display error message for all items
+                        //    userInterface.DisplayAllItemsError();
+                        //}
+                        Console.WriteLine("Using a foreach loop print out each item in the database.");
+
+                        foreach(Beverage beverage in beverageEntities.Beverages)
+                            {
+                                Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
+                                beverage.price.ToString("n2") + " " + beverage.active + " ");
+                            }
                         break;
 
                     case 3:

@@ -107,7 +107,7 @@ namespace assignment1
                         {
                             Console.WriteLine("Enter the ID of the Item you wish to delete.");
                             string deleteString=Console.ReadLine();
-                            beverageEntities.Beverages.Remove();
+                            beverageEntities.Beverages.Remove(beverageEntities.Beverages[deleteString]);
 
                             
                         }

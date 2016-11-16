@@ -52,35 +52,12 @@ namespace assignment1
                 {
                     case 1:
                         //Print Entire List Of Items
-
-                        //Using a foreach loop print out each item in the database
-                        foreach (Beverage beverage in beverageEntities.Beverages)
-                        {
-                            Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
-                            beverage.price.ToString("n2") + " " + beverage.active + " ");
-                        }
+                        userInterface.PrintDatabaseBeverageList();                       
                         break;
 
                     case 2:
                         //Search For An Item
-                        try
-                        {
-                            Beverage foundBeverage = beverageEntities.Beverages.Find(Console.ReadLine());
-
-                            Console.WriteLine(foundBeverage.id + " " + foundBeverage.name + " " + foundBeverage.pack + " " +
-                                foundBeverage.price.ToString("n2") + " " + foundBeverage.active + " ");
-                        }
-                        //Error Message if ID is invalid
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                            Console.WriteLine("ID not found.");
-                        }
-                        //Notifies user that the query is complete.
-                        finally
-                        {
-                            Console.WriteLine("Search Query Complete.");
-                        }                
+                        userInterface.SearchForItem();
                         break;
 
                     case 3:
@@ -99,29 +76,11 @@ namespace assignment1
 
                     case 4:
                         //Update an existing item(Not ID)
-
+                        userInterface.UpdateExistingItem();
                         break;
                     case 5:
                         //Delete an Existing Item(By ID)
-                        try
-                        {
-                            Console.WriteLine("Enter the ID of the Item you wish to delete.");
-                            string deleteString=Console.ReadLine();
-                            beverageEntities.Beverages.Remove(beverageEntities.Beverages[deleteString]);
-
-                            
-                        }
-                        //Error Message if ID is invalid
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                            Console.WriteLine("ID not found.");
-                        }
-                        //Notifies user that the query is complete.
-                        finally
-                        {
-                            Console.WriteLine("Search Query Complete.");
-                        }   
+                        userInterface.DeleteRecord();
                         break;
                 }
 
@@ -134,5 +93,6 @@ namespace assignment1
 }
 /**
  * TO DO LIST
- * 1)Move functionality to UI where it belongs.
+ * 1)Move functionality to Proper class(es) where it belongs.
+ * 2)Add appropriate Exception Handling.
  **/

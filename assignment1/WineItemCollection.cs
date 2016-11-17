@@ -11,6 +11,9 @@ namespace assignment1
 {
     class WineItemCollection : IWineCollection
     {
+        //Instantiate Entities class
+        BeverageRCooleyEntities beverageEntities;
+
         //Private Variables
         WineItem[] wineItems;
         int wineItemsLength;
@@ -80,6 +83,29 @@ namespace assignment1
             //Return the returnString
             return returnString;
         }
+        public void SearchForItem()
+        {
+            beverageEntities = new BeverageRCooleyEntities();
+            try
+            {
+                //search for a beverage using Find with user input being the search parameter.
+                Beverage foundBeverage = beverageEntities.Beverages.Find(Console.ReadLine());
 
+                //Display found item
+                Console.WriteLine(foundBeverage.id + " " + foundBeverage.name + " " + foundBeverage.pack + " " +
+                    foundBeverage.price.ToString("n2") + " " + foundBeverage.active + " ");
+            }
+            //Error Message if ID is invalid
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("ID not found.");
+            }
+            //Notifies user that the query is complete.
+            finally
+            {
+                Console.WriteLine("Search Query Complete.");
+            }
+        }
     }
 }

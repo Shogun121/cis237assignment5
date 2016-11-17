@@ -157,6 +157,8 @@ namespace assignment1
         /// </summary>
         public void PrintDatabaseBeverageList()
         {
+            beverageEntities = new BeverageRCooleyEntities();
+
             //Using a foreach loop print out each item in the database
             foreach (Beverage beverage in beverageEntities.Beverages)
             {
@@ -188,7 +190,7 @@ namespace assignment1
             finally
             {
                 Console.WriteLine("Search Query Complete.");
-            }                
+            }
         }
         /// <summary>
         /// Method used to delete a record from the database of wine items.

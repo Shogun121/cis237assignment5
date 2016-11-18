@@ -238,24 +238,38 @@ namespace assignment1
         {
             //variable to store the incoming data
             string inputString;
+
             //initialization
             beverageEntities = new BeverageRCooleyEntities();
+
             //Prompt user for Input
             Console.WriteLine("Update an item, via given ID");
+
             //Acquire input
             inputString = Console.ReadLine();
-            //try
-            //{
-            //    //Search for the wine item using the input as a search parameter.
-            //    Beverage updateBeverage = beverageEntities.Beverages.Find(inputString);
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //    Console.WriteLine("Search for Item failed.");
-            //}
+
+            if(inputString!=null)
+            {
+                if()
+                {
+
+                }
+            }
+
             //Search for the wine item using the input as a search parameter.
             Beverage updateBeverage = beverageEntities.Beverages.Find(inputString);
+
+            try
+            {
+                ////Search for the wine item using the input as a search parameter.
+                //updateBeverage = beverageEntities.Beverages.Find(inputString);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Search for Item failed.");
+            }
+            
             //Wine item found, and announced.
             Console.WriteLine("This beverage will be updated.");
             //Pre-Modification data.

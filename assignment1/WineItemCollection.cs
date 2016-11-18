@@ -63,6 +63,8 @@ namespace assignment1
         //Find an item by it's Id
         public string FindById(string id)
         {
+            //initialzie the Entities class
+            beverageEntities = new BeverageRCooleyEntities();
             //Declare return string for the possible found item
             string returnString = null;
 

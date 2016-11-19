@@ -15,43 +15,43 @@ namespace assignment1
         BeverageRCooleyEntities beverageEntities;
 
         //Private Variables
-        WineItem[] wineItems;
-        int wineItemsLength;
+        Beverage[] beverageArray;
+        int beverageItemLength;
 
         //Constuctor. Must pass the size of the collection.
         public WineItemCollection(int size)
         {
-            wineItems = new WineItem[size];
-            wineItemsLength = 0;
+            beverageArray = new Beverage[size];
+            beverageItemLength = 0;
         }
 
         //Add a new item to the collection
-        public void AddNewItem(string id, string description, string pack)
+        public void AddNewItem(string id, string name, string pack,string price)
         {
             //Add a new WineItem to the collection. Increase the Length variable.
-            wineItems[wineItemsLength] = new WineItem(id, description, pack);
-            wineItemsLength++;
+            beverageArray[beverageItemLength] = new Beverage(id, name, pack,price);
+            beverageItemLength++;
         }
         
         //Get The Print String Array For All Items
         public string[] GetPrintStringsForAllItems()
         {
             //Create and array to hold all of the printed strings
-            string[] allItemStrings = new string[wineItemsLength];
+            string[] allItemStrings = new string[beverageItemLength];
             //set a counter to be used
             int counter = 0;
 
             //If the wineItemsLength is greater than 0, create the array of strings
-            if (wineItemsLength > 0)
+            if (beverageItemLength > 0)
             {
                 //For each item in the collection
-                foreach (WineItem wineItem in wineItems)
+                foreach (Beverage beverage in beverageArray)
                 {
                     //if the current item is not null.
-                    if (wineItem != null)
+                    if (beverage != null)
                     {
                         //Add the results of calling ToString on the item to the string array.
-                        allItemStrings[counter] = wineItem.ToString();
+                        allItemStrings[counter] = beverage.ToString();
                         counter++;
                     }
                 }

@@ -66,29 +66,26 @@ namespace assignment1
         //Get New Item Information From The User.
         public string[] GetNewItemInformation()
         {
+            //Query the ID
             Console.WriteLine();
-            Console.WriteLine("What is the new items Id?");
+            Console.WriteLine("What is the new item's {0}?","id");
             Console.Write("> ");
             string id = Console.ReadLine();
-            //instance created to allow for testing ID location
-            Beverage foundBeverage = beverageEntities.Beverages.Find(Console.ReadLine());
-
-            //prompt user until a unique ID is given.
-            while(id == foundBeverage.id)
-            {
-                Console.WriteLine("That ID is already in use");
-                Console.WriteLine("What is the new items Id?");
-                id = Console.ReadLine();
-            }
-           //If the ID is unique, ask for the rest of the information.
-            Console.WriteLine("What is the new items Description?");
+            //Query the Name
+            Console.WriteLine("What is the new item's {0}?","name");
             Console.Write("> ");
             string description = Console.ReadLine();
-            Console.WriteLine("What is the new items Pack?");
+            //Query the Pack
+            Console.WriteLine("What is the new item's {0}?","pack");
             Console.Write("> ");
             string pack = Console.ReadLine();
+            //Query the Price
+            Console.WriteLine("What is the new item's {0}","price");
+            Console.WriteLine("> ");
+            string price = Console.ReadLine();
 
-            return new string[] { id, description, pack };           
+            //return all the collected information to Main for processing.
+            return new string[] { id, description, pack, price };           
         }
 
         //Display Import Success

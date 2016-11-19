@@ -73,7 +73,7 @@ namespace assignment1
                         string[] newItemInformation = userInterface.GetNewItemInformation();
                         if (wineItemCollection.FindById(newItemInformation[0]) == null)
                         {
-                            wineItemCollection.AddNewItem(newItemInformation[0], newItemInformation[1], newItemInformation[2]);
+                            wineItemCollection.AddNewItem(newItemInformation[0], newItemInformation[1], newItemInformation[2],newItemInformation[3]);
                             userInterface.DisplayAddWineItemSuccess();
                         }
                         else

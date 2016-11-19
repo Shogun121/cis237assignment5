@@ -171,63 +171,57 @@ namespace assignment1
         /// <summary>
         /// Method used to update an existing item except the PK.
         /// </summary>
-        public void UpdateExistingItem(string Input)
+        public bool UpdateExistingItem(string Input)
         {
-            //variable to store the incoming data
-            string inputString;
+            bool success = false;
 
-            //initialization
+            ////variable to store the incoming data
+            //string inputString;
+
+            //EF class initialization
             beverageEntities = new BeverageRCooleyEntities();
 
-            //Prompt user for Input
-            Console.WriteLine("Update an item, via given ID");
-
-            //Acquire input
-            inputString = Console.ReadLine();
-
-            if(inputString!=null)
+            //Pass the query through FindById to determine if it exists.
+            if(FindById(Input)!=null)
             {
-                if()
-                {
-
-                }
+                success = true;
             }
+            return success = false;
+            ////Search for the wine item using the input as a search parameter.
+            //Beverage updateBeverage = beverageEntities.Beverages.Find(inputString);
 
-            //Search for the wine item using the input as a search parameter.
-            Beverage updateBeverage = beverageEntities.Beverages.Find(inputString);
-
-            try
-            {
-                ////Search for the wine item using the input as a search parameter.
-                //updateBeverage = beverageEntities.Beverages.Find(inputString);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Search for Item failed.");
-            }
+            //try
+            //{
+            //    ////Search for the wine item using the input as a search parameter.
+            //    //updateBeverage = beverageEntities.Beverages.Find(inputString);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //    Console.WriteLine("Search for Item failed.");
+            //}
             
-            //Wine item found, and announced.
-            Console.WriteLine("This beverage will be updated.");
-            //Pre-Modification data.
-            Console.WriteLine(updateBeverage.id + " " + updateBeverage.name + " " + updateBeverage.pack + " " +
-                            updateBeverage.price.ToString("n2") + " " + updateBeverage.active + " ");
-            //BEGIN alterations
-            updateBeverage.name = "[wine name]";
-            updateBeverage.pack = "12";
-            updateBeverage.price = 120;
-            updateBeverage.active = true;
+            ////Wine item found, and announced.
+            //Console.WriteLine("This beverage will be updated.");
+            ////Pre-Modification data.
+            //Console.WriteLine(updateBeverage.id + " " + updateBeverage.name + " " + updateBeverage.pack + " " +
+            //                updateBeverage.price.ToString("n2") + " " + updateBeverage.active + " ");
+            ////BEGIN alterations
+            //updateBeverage.name = "[wine name]";
+            //updateBeverage.pack = "12";
+            //updateBeverage.price = 120;
+            //updateBeverage.active = true;
 
-            //save updates
-            beverageEntities.SaveChanges();
+            ////save updates
+            //beverageEntities.SaveChanges();
 
-            //Search for modified item
-            beverageEntities.Beverages.Find(inputString);
+            ////Search for modified item
+            //beverageEntities.Beverages.Find(inputString);
 
-            //Display updated item
-            Console.WriteLine("This is the wine item post-change.");
-            Console.WriteLine(updateBeverage.id + " " + updateBeverage.name + " " + updateBeverage.pack + " " +
-                            updateBeverage.price.ToString("n2") + " " + updateBeverage.active + " ");
+            ////Display updated item
+            //Console.WriteLine("This is the wine item post-change.");
+            //Console.WriteLine(updateBeverage.id + " " + updateBeverage.name + " " + updateBeverage.pack + " " +
+            //                updateBeverage.price.ToString("n2") + " " + updateBeverage.active + " ");
 
         }
     }

@@ -86,7 +86,11 @@ namespace assignment1
                         //Update an existing item(Not ID)
 
                         //Query user for item to be updated, then call then Update method.
-                        wineItemCollection.UpdateExistingItem(userInterface.GetSearchQuery());
+                        //If the
+                        if (wineItemCollection.UpdateExistingItem(userInterface.GetSearchQuery()))
+                        {
+
+                        }
                         break;
                     case 5:
                         //Delete an Existing Item(By ID)
@@ -115,4 +119,7 @@ namespace assignment1
  * TO DO LIST
  * 1)Move functionality to Proper class(es) where it belongs.
  * 2)Add appropriate Exception Handling.
+ * 3)Look into using the other methods in WineItemCollection.
+ * 4)Rename WIC
+ * 5)Work on Update, and Add Methods.
  **/

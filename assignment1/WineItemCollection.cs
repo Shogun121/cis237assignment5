@@ -28,9 +28,18 @@ namespace assignment1
         //Add a new item to the collection
         public void AddNewItem(string id, string name, string pack,string price)
         {
-            //Add a new WineItem to the collection. Increase the Length variable.
-            beverageArray[beverageItemLength] = new Beverage(id, name, pack,price);
-            beverageItemLength++;
+            decimal placeholder;
+
+            //Add Method on EF class to update when a new beverage is added
+            Beverage addBeverage=beverageEntities.Beverages.Find(id);
+
+            addBeverage.id = id;
+            addBeverage.name = name;
+            addBeverage.pack = pack;
+            decimal.TryParse(price, out placeholder);
+            addBeverage.price = placeholder;
+
+            beverageEntities.Beverages.Add(addBeverage);
         }
         
         //Get The Print String Array For All Items
@@ -223,6 +232,8 @@ namespace assignment1
             //Console.WriteLine(updateBeverage.id + " " + updateBeverage.name + " " + updateBeverage.pack + " " +
             //                updateBeverage.price.ToString("n2") + " " + updateBeverage.active + " ");
 
-        }
+        }/**
+          * Remember to Adjust the array size in the Delete Method to reflect the size.
+          * */
     }
 }

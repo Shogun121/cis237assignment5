@@ -82,10 +82,11 @@ namespace assignment1
             //Query the Price
             Console.WriteLine("What is the new item's {0}","price");
             Console.WriteLine("> ");
-            string price = Console.ReadLine();
+            decimal price;
+            decimal.TryParse(Console.ReadLine(),out price);
 
             //return all the collected information to Main for processing.
-            return new string[] { id, description, pack, price };           
+            return new string[] { id, description, pack, price.ToString() };           
         }
 
         //Display Import Success

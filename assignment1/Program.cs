@@ -24,17 +24,11 @@ namespace assignment1
             //Set a constant for the size of the collection
             const int wineItemCollectionSize = 4000;
 
-            //Set a constant for the path to the CSV File
-            const string pathToCSVFile = "../../../datafiles/winelist.csv";
-
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
 
             //Create an instance of the WineItemCollection class
-            IWineCollection wineItemCollection = new WineItemCollection(wineItemCollectionSize);
-
-            //Create an instance of the CSVProcessor class
-            CSVProcessor csvProcessor = new CSVProcessor();
+            WineItemCollection wineItemCollection = new WineItemCollection(wineItemCollectionSize);
 
             //Create an instance of the Entities class
             BeverageRCooleyEntities beverageEntities = new BeverageRCooleyEntities();
@@ -52,12 +46,26 @@ namespace assignment1
                 {
                     case 1:
                         //Print Entire List Of Items
-                        userInterface.PrintDatabaseBeverageList();                       
+                        userInterface.PrintDatabaseBeverageList(wineItemCollection.PrintDatabaseBeverageList());
                         break;
-
                     case 2:
                         //Search For An Item
-                        userInterface.SearchForItem();
+                        
+                        //Query user for search string, send return string to the search item method.
+                        //returns the found item, if it exists, and prepares to output it to the console.
+                        string[] searchBeverage=
+                            wineItemCollection.SearchForItem(userInterface.GetSearchQuery());
+
+                        //Display Item Found
+                        if(searchBeverage[0]!=null)
+                        {
+                            userInterface.DisplayItemFound(searchBeverage[1]);
+                        }
+                        //Display Item not found.
+                        else
+                        {
+                            userInterface.DisplayItemFoundError();
+                        }
                         break;
 
                     case 3:
@@ -76,18 +84,30 @@ namespace assignment1
 
                     case 4:
                         //Update an existing item(Not ID)
-                        userInterface.UpdateExistingItem();
+
+                        //Query user for item to be updated, then call then Update method.
+                        wineItemCollection.UpdateExistingItem(userInterface.GetSearchQuery());
                         break;
                     case 5:
                         //Delete an Existing Item(By ID)
-                        userInterface.DeleteRecord();
+
+                        //Query the user for id to delete an item, pass it through the delete method.
+                        //If it returns true, the beverage was successfully deleted.
+                        if (wineItemCollection.DeleteRecord(userInterface.GetSearchQuery()))
+                        {
+                            userInterface.DisplayDeleteSuccess();
+                        }
+                        //if not, display error.
+                        else
+                        {
+                            userInterface.DisplayItemFoundError();
+                        }
                         break;
                 }
 
                 //Get the new choice of what to do from the user
                 choice = userInterface.DisplayMenuAndGetResponse();
             }
-
         }
     }
 }

@@ -88,9 +88,7 @@ namespace assignment1
             Console.Write("> ");
             string pack = Console.ReadLine();
 
-            return new string[] { id, description, pack };
-            
-            
+            return new string[] { id, description, pack };           
         }
 
         //Display Import Success
@@ -116,7 +114,6 @@ namespace assignment1
                 Console.WriteLine(itemOutput);
             }
         }
-
         //Display All Items Error
         public void DisplayAllItemsError()
         {
@@ -128,7 +125,7 @@ namespace assignment1
         public void DisplayItemFound(string itemInformation)
         {
             Console.WriteLine();
-            Console.WriteLine("Item Found!");
+            Console.WriteLine("{0} Found!","beverage");
             Console.WriteLine(itemInformation);
         }
 
@@ -143,157 +140,36 @@ namespace assignment1
         public void DisplayAddWineItemSuccess()
         {
             Console.WriteLine();
-            Console.WriteLine("The Item was successfully added");
+            Console.WriteLine("The {0} was successfully added","beverage");
         }
 
         //Display Item Already Exists Error
         public void DisplayItemAlreadyExistsError()
         {
             Console.WriteLine();
-            Console.WriteLine("An Item With That Id Already Exists");
+            Console.WriteLine("A(n) {0} with that id already exists","beverage");
         }
         /// <summary>
         /// Method that prints the entire list of beverages in the database.
         /// </summary>
-        public void PrintDatabaseBeverageList()
+        public void PrintDatabaseBeverageList(Beverage[] BeverageArray)
         {
-            beverageEntities = new BeverageRCooleyEntities();
-
             //Using a foreach loop print out each item in the database
-            foreach (Beverage beverage in beverageEntities.Beverages)
+            foreach (Beverage beverage in BeverageArray)
             {
                 Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
                 beverage.price.ToString("n2") + " " + beverage.active + " ");
             }
         }
         /// <summary>
-        /// Search for an item within the beverage database.
+        /// Method used to display success when deleting an item.
         /// </summary>
-        public void SearchForItem()
+        public void DisplayDeleteSuccess()
         {
-            try
-            {
-                //search for a beverage using Find with user input being the search parameter.
-                Beverage foundBeverage = beverageEntities.Beverages.Find(Console.ReadLine());
-
-                //Display found item
-                Console.WriteLine(foundBeverage.id + " " + foundBeverage.name + " " + foundBeverage.pack + " " +
-                    foundBeverage.price.ToString("n2") + " " + foundBeverage.active + " ");
-            }
-            //Error Message if ID is invalid
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("ID not found.");
-            }
-            //Notifies user that the query is complete.
-            finally
-            {
-                Console.WriteLine("Search Query Complete.");
-            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("{0} successfully deleted!","beverage");
         }
-        /// <summary>
-        /// Method used to delete a record from the database of wine items.
-        /// </summary>
-        public void DeleteRecord()
-        {
-            //input variables
-            string inputString;
-            //initializing instantiation of the EF class.
-            beverageEntities = new BeverageRCooleyEntities();
-            //Attempt to delete a record from the database.
-            Console.WriteLine("Enter a string for the ID of the Item you wish to delete.");
-            inputString = Console.ReadLine();
-            //Find a record based the PK.
-            Beverage beverageToDelete = beverageEntities.Beverages.Find(inputString);
-
-            //Delete the record assuming the PK is good.
-            beverageEntities.Beverages.Remove(beverageToDelete);
-            Console.WriteLine("Beverage found");
-
-            //Save the changes
-            beverageEntities.SaveChanges();
-
-            try
-            {
-                beverageToDelete = beverageEntities.Beverages.Find(inputString);
-                Console.WriteLine(beverageToDelete.id + " " + beverageToDelete.name + " " + beverageToDelete.pack + " ");
-            }
-            //Error Message if ID is invalid
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("ID not found.");
-            }
-            //Notifies user that the query is complete.
-            finally
-            {
-                Console.WriteLine("Search Query Complete.");
-            }
-        }
-        /// <summary>
-        /// Method used to update an existing item except the PK.
-        /// </summary>
-        public void UpdateExistingItem()
-        {
-            //variable to store the incoming data
-            string inputString;
-
-            //initialization
-            beverageEntities = new BeverageRCooleyEntities();
-
-            //Prompt user for Input
-            Console.WriteLine("Update an item, via given ID");
-
-            //Acquire input
-            inputString = Console.ReadLine();
-
-            if(inputString!=null)
-            {
-                if()
-                {
-
-                }
-            }
-
-            //Search for the wine item using the input as a search parameter.
-            Beverage updateBeverage = beverageEntities.Beverages.Find(inputString);
-
-            try
-            {
-                ////Search for the wine item using the input as a search parameter.
-                //updateBeverage = beverageEntities.Beverages.Find(inputString);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Search for Item failed.");
-            }
-            
-            //Wine item found, and announced.
-            Console.WriteLine("This beverage will be updated.");
-            //Pre-Modification data.
-            Console.WriteLine(updateBeverage.id + " " + updateBeverage.name + " " + updateBeverage.pack + " " +
-                            updateBeverage.price.ToString("n2") + " " + updateBeverage.active + " ");
-            //BEGIN alterations
-            updateBeverage.name = "[wine name]";
-            updateBeverage.pack = "12";
-            updateBeverage.price = 120;
-            updateBeverage.active = true;
-
-            //save updates
-            beverageEntities.SaveChanges();
-
-            //Search for modified item
-            beverageEntities.Beverages.Find(inputString);
-
-            //Display updated item
-            Console.WriteLine("This is the wine item post-change.");
-            Console.WriteLine(updateBeverage.id + " " + updateBeverage.name + " " + updateBeverage.pack + " " +
-                            updateBeverage.price.ToString("n2") + " " + updateBeverage.active + " ");
-
-        }
-
         //---------------------------------------------------
         //Private Methods
         //---------------------------------------------------
@@ -356,7 +232,6 @@ namespace assignment1
                 //set return value to false even though it should already be false
                 returnValue = false;
             }
-
             //Return the reutrnValue
             return returnValue;
         }

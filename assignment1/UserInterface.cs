@@ -17,12 +17,12 @@ namespace assignment1
         //---------------------------------------------------
 
         //instantiate enties class
-        BeverageRCooleyEntities beverageEntities;
+        //BeverageRCooleyEntities beverageEntities;
 
         //Display Welcome Greeting
         public void DisplayWelcomeGreeting()
         {
-            Console.WriteLine("Welcome to the wine program");
+            Console.WriteLine("Welcome to the {0} program","beverage");
         }
 
         //Display Menu And Get Response
@@ -116,7 +116,7 @@ namespace assignment1
         public void DisplayAllItemsError()
         {
             Console.WriteLine();
-            Console.WriteLine("There are no items in the list to print");
+            Console.WriteLine("There are no {0} items in the list to print","beverage");
         }
 
         //Display Item Found Success
@@ -155,6 +155,7 @@ namespace assignment1
             //Using a foreach loop print out each item in the database
             foreach (Beverage beverage in BeverageArray)
             {
+                
                 try
                 {
                     Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
@@ -162,9 +163,7 @@ namespace assignment1
                 }
                 catch(Exception e)
                 {
-                    
-                }
-
+                }               
             }
         }
         /// <summary>
@@ -186,11 +185,11 @@ namespace assignment1
             Console.WriteLine();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine();
-            Console.WriteLine("1. Print the Entire Wine List");
-            Console.WriteLine("2. Search for an Item");
-            Console.WriteLine("3. Add a New Item To The List");
-            Console.WriteLine("4. Update an Existing Item");
-            Console.WriteLine("5. Delete an Existing item");
+            Console.WriteLine("1. Print the {0} List.","beverage");
+            Console.WriteLine("2. Search for a(n) {0}","beverage");
+            Console.WriteLine("3. Add a New {0}","beverage");
+            Console.WriteLine("4. Update an Existing {0}","beverage");
+            Console.WriteLine("5. Delete an Existing {0}","beverage");
             Console.WriteLine("6. Exit");
         }
 

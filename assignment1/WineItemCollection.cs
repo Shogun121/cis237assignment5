@@ -99,7 +99,7 @@ namespace assignment1
             string returnString = null;
 
             //For each WineItem in wineItems
-            foreach (Beverage beverage in beverageEntities.Beverages)
+            foreach (Beverage beverage in beverageArray)
             {
                 //If the beverage is not null
                 if (beverage != null)
@@ -154,7 +154,7 @@ namespace assignment1
             beverageEntities = new BeverageRCooleyEntities();
 
             //Search through database for given ID
-            if (FindById(Input)==null)
+            if (FindById(Input)!=null)
             {
                 //Find a record based the PK.
                 Beverage beverageToDelete = beverageEntities.Beverages.Find(Input);
@@ -191,22 +191,6 @@ namespace assignment1
             }
 
             return new string[] { };
-
-            //try
-            //{
-                
-            //}
-            ////Error Message if ID is invalid
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //    Console.WriteLine("ID not found.");
-            //}
-            ////Notifies user that the query is complete.
-            //finally
-            //{
-            //    Console.WriteLine("Search Query Complete.");
-            //}
         }
         /// <summary>
         /// Method used to update an existing item except the PK.

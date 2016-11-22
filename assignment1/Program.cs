@@ -89,9 +89,9 @@ namespace assignment1
                         //Query user for item to be updated, then call then Update method.
                         //If the
                         string[] updateItemInformation = userInterface.GetNewItemInformation();
-                        if (wineItemCollection.FindById(updateItemInformation[0]) == null)
+                        if (wineItemCollection.FindById(updateItemInformation[0]) != null)
                         {
-                            
+                            wineItemCollection.UpdateExistingItem(updateItemInformation[0]);
                         }
                         break;
                     case 5:

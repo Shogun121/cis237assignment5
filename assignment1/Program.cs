@@ -22,13 +22,13 @@ namespace assignment1
         static void Main(string[] args)
         {
             //Set a constant for the size of the collection
-            const int wineItemCollectionSize = 4000;
+            const int beverageCollectionSize = 5000;
 
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
 
             //Create an instance of the WineItemCollection class
-            WineItemCollection wineItemCollection = new WineItemCollection(wineItemCollectionSize);
+            WineItemCollection wineItemCollection = new WineItemCollection(beverageCollectionSize);
 
             //Create an instance of the Entities class
             BeverageRCooleyEntities beverageEntities = new BeverageRCooleyEntities();
@@ -71,9 +71,10 @@ namespace assignment1
                     case 3:
                         //Add A New Item To The List
                         string[] newItemInformation = userInterface.GetNewItemInformation();
-                        if (wineItemCollection.FindById(newItemInformation[0]) == null)
+                        if (wineItemCollection.FindById(newItemInformation[0]) != null)
                         {
-                            wineItemCollection.AddNewItem(newItemInformation[0], newItemInformation[1], newItemInformation[2],newItemInformation[3]);
+                            wineItemCollection.AddNewItem(newItemInformation[0], newItemInformation[1], newItemInformation[2],newItemInformation[3]
+                                ,newItemInformation[4]);
                             userInterface.DisplayAddWineItemSuccess();
                         }
                         else

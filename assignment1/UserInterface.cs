@@ -74,19 +74,23 @@ namespace assignment1
             //Query the Name
             Console.WriteLine("What is the new item's {0}?","name");
             Console.Write("> ");
-            string description = Console.ReadLine();
+            string name = Console.ReadLine();
             //Query the Pack
-            Console.WriteLine("What is the new item's {0}?","pack");
+            Console.WriteLine("What is  the {1} for {0}?",name,"pack");
             Console.Write("> ");
             string pack = Console.ReadLine();
             //Query the Price
-            Console.WriteLine("What is the new item's {0}","price");
+            Console.WriteLine("What is the {0} for {1}","price",name);
             Console.WriteLine("> ");
             decimal price;
             decimal.TryParse(Console.ReadLine(),out price);
+            //Query whether or not it is active.
+            Console.WriteLine("Is {0} {1}? T/F",name,"active");
+            Console.WriteLine("> ");
+            string active=Console.ReadLine().ToUpper();
 
             //return all the collected information to Main for processing.
-            return new string[] { id, description, pack, price.ToString() };           
+            return new string[] { id, name, pack, price.ToString(),active };           
         }
 
         //Display Import Success

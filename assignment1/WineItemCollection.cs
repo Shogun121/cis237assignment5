@@ -26,20 +26,41 @@ namespace assignment1
         }
 
         //Add a new item to the collection
-        public void AddNewItem(string id, string name, string pack,string price)
+        public void AddNewItem(string id, string name, string pack,string price, string active)
         {
             decimal placeholder;
 
             //Add Method on EF class to update when a new beverage is added
             Beverage addBeverage=beverageEntities.Beverages.Find(id);
+            //ADD a TRY CATCH to handle improper input
+            try
+            {
+                if (addBeverage.id != null)
+                {
+                    addBeverage.id = id;
+                    addBeverage.name = name;
+                    addBeverage.pack = pack;
+                    decimal.TryParse(price, out placeholder);
+                    addBeverage.price = placeholder;
+                    if (active == "T")
+                    {
+                        addBeverage.active = true;
+                    }
+                    else
+                    {
+                        addBeverage.active = false;
+                    }
 
-            addBeverage.id = id;
-            addBeverage.name = name;
-            addBeverage.pack = pack;
-            decimal.TryParse(price, out placeholder);
-            addBeverage.price = placeholder;
+                    beverageEntities.Beverages.Add(addBeverage);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
 
-            beverageEntities.Beverages.Add(addBeverage);
+            
         }
         
         //Get The Print String Array For All Items
@@ -105,13 +126,19 @@ namespace assignment1
             beverageEntities = new BeverageRCooleyEntities();
 
             //Create the beverage array.
-            Beverage[] beverageArray=new Beverage[1000];
+            //Beverage[] beverageArray=new Beverage[1000];
             int IndexCounter=0;
 
             //Store each beverage in an array to be passed to the UI.
             foreach (Beverage beverage in beverageEntities.Beverages)
             {
-                beverageArray[IndexCounter] = beverage;
+                //Old add
+                //beverageArray[IndexCounter] = beverage;
+                //IndexCounter++;
+
+                //Work in Progress add
+                Beverage addBeverageToList = beverage;
+                beverageArray[IndexCounter] = addBeverageToList;
                 IndexCounter++;
             }
             return beverageArray;
@@ -157,9 +184,13 @@ namespace assignment1
             FindById(Input);
             //search for a beverage using Find with user input being the search parameter.
             Beverage foundBeverage = beverageEntities.Beverages.Find(Input);
+            if(foundBeverage.id!=null)
+            {
+                //Return found item
+                return new string[] { foundBeverage.id, foundBeverage.name, foundBeverage.pack, foundBeverage.price.ToString() };
+            }
 
-            //Return found item
-            return new string[] { foundBeverage.id, foundBeverage.name, foundBeverage.pack, foundBeverage.price.ToString() };
+            return new string[] { };
 
             //try
             //{

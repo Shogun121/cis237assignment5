@@ -8,7 +8,7 @@ namespace assignment1
 {
     interface IWineCollection
     {
-        void AddNewItem(string id, string description, string pack);
+        void AddNewItem(string id, string description, string pack, string price,string active);
 
         string[] GetPrintStringsForAllItems();
 

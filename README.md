@@ -79,6 +79,6 @@ Solution Requirements:
 | README                                  | 5      |
 | Total                                   | 100    |
 
-## Outside Resources Used
-
+## Outside Resources Used	
+http://stackoverflow.com/questions/4660142/what-is-a-nullreferenceexception-and-how-do-i-fix-it		//Null reference exception.
 ## Known Problems, Issues, And/Or Errors in the Program

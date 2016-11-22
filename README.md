@@ -59,6 +59,9 @@ Solution Requirements:
 * UI Class to handle I/O
 
 ### Notes
+Print method prints but errors when done.
+Search works if you pick an index inside the array.
+Add throws a nullReferenceException.
 
 
 

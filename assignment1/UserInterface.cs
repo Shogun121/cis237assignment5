@@ -110,11 +110,7 @@ namespace assignment1
         //Display All Items
         public void DisplayAllItems(string[] allItemsOutput)
         {
-            Console.WriteLine();
-            foreach (string itemOutput in allItemsOutput)
-            {
-                Console.WriteLine(itemOutput);
-            }
+            Console.WriteLine();           
         }
         //Display All Items Error
         public void DisplayAllItemsError()
@@ -159,8 +155,16 @@ namespace assignment1
             //Using a foreach loop print out each item in the database
             foreach (Beverage beverage in BeverageArray)
             {
-                Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
+                try
+                {
+                    Console.WriteLine(beverage.id + " " + beverage.name + " " + beverage.pack + " " +
                 beverage.price.ToString("n2") + " " + beverage.active + " ");
+                }
+                catch(Exception e)
+                {
+                    
+                }
+
             }
         }
         /// <summary>

@@ -22,7 +22,7 @@ namespace assignment1
         static void Main(string[] args)
         {
             //Set a constant for the size of the collection
-            const int beverageCollectionSize = 5000;
+            const int beverageCollectionSize = 2200;
 
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
